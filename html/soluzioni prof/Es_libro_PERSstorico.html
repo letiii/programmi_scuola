@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>TEST PERSONAGGI STORICI</title>
+<script type="text/javascript">
+function pulisci()
+{
+  nato.value="";
+  morto.value="";
+}
+
+function controlla(na,mo,who)
+{
+  var nomi=new Array("WILLIAM SHAKESPEARE","GALILEO GALILEI","MONTEZUMA II");
+  var birth= new Array (1564,1564,1466);
+  var dead=new Array(1616,1642,1520);
+  var d_n,d_m;
+  d_n=parseInt(na);
+  d_m=parseInt(mo);
+  if(d_n>d_m)
+  {
+      alert("NON POSSO MORIRE NEL " + d_m + " ED ESSERE NATO NEL " + d_n + "!!!!!");
+      pulisci();
+  }
+  else
+  {
+     if (who=='S')
+    {
+       if((d_n==birth[0])&&(d_m==dead[0]))
+          document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(0,0,255);'>BRAVO !!!");
+      else
+         document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(255,0,0);'>ERRATO !!! " + nomi[0] +" è nato nel " + birth[0] + " e morto nel " + dead[0]);
+    }
+    else if (who=='G')
+    {
+      if((d_n==birth[1])&&(d_m==dead[1]))
+         document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(0,0,255);'>BRAVO !!!");
+      else
+        document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(255,0,0);'>ERRATO !!! " + nomi[1] +" è nato nel " + birth[1] + " e morto nel " + dead[1]);
+    }
+    else
+    {
+       if((d_n==birth[2])&&(d_m==dead[2]))
+          document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(0,0,255);'>BRAVO !!!");
+      else
+         document.write("<P style='font-size:28pt;font-weight: bold; color: RGB(255,0,0);'>ERRATO !!! " + nomi[2] +" è nato nel " + birth[2] + " e morto nel " + dead[2]);
+    }
+   document.write("<BR><BR><BR><BR><BR><BR><P style='font-size: 18pt; color: RGB(0,0,0);'>USARE IL PULSANTE DI NAVIGAZIONE DEL BROWSER PER TORNARE ALLA PAGINA INIZIALE");
+  }
+}
+</script>
+
+</head>
+<body bgcolor="#0000FF"  text="#FFFFFF">
+<P style="font-size: 20pt;font-weight: bold">
+INSERISCI L'ANNO DI NASCITA E L'ANNO DI MORTE DEL PERSONAGGIO PRESCELTO, 
+<BR><BR>QUINDI PREMI IL RELATIVO BOTTONE PER VERIFICARE LE RISPOSTE DATE<BR><BR><BR><BR>
+WILLIAM SHAKESPEARE&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;GALILEO GALILEI&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;MONTEZUMA II<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="WILLIAM SHAKESPEARE" onclick="controlla(nato.value, morto.value,'S');"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" value="GALILEO GALILEI" onclick="controlla(nato.value, morto.value,'G');"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" value="MONTEZUMA II" onclick="controlla(nato.value, morto.value,'L');"/>
+<BR><BR><BR>
+ANNO DI NASCITA <input type="text" name="nato" id="nato" value="" size=4/> <BR><BR>
+ANNO DI MORTE  &nbsp;&nbsp;&nbsp;<input type="text" name="morto" id="morto" value="" size=4/> 
+<BR><BR><BR>
+<input type="reset" onClick="pulisci();"/> 
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE> temperatura </TITLE>
+<script type="text/javascript">
+var n=3,i;
+var nome = new Array(n);
+var tmax = new Array(n);
+var tmin = new Array(n);
+
+for(i=0;i<n;i++){
+nome[i]=prompt("inserire il nome della città"," ");
+tmax[i]=prompt("inserire temperatura massima"," ");
+tmin[i]=prompt("inserire temperatura minima"," ");
+}
+
+
+function stampa(){
+window.close();
+mywin=window.open();
+for(i=0;i<n;i++)
+{
+mywin.document.write(nome[i]+' '+tmax[i]+' '+tmin[i]);
+mywin.document.write("<BR>");
+}
+}
+
+</script>
+</HEAD>
+
+<BODY >
+<input type="button" name ="puls" id="puls" value="stampa" onClick="stampa();">
+</BODY>
+</HTML>

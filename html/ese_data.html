@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE> ese data </TITLE>
+<script type="text/javascript">
+var meseRif=1,giornoRif=1;
+function conta()
+{
+var i,diffG=0;
+do{
+var mese=parseInt(prompt("inserire il numero del mese",""));
+}while((mese<1)||(mese>12));
+if(mese==2)
+           do{
+               var giorno=parseInt(prompt("inserire il numero del giorno",""));
+            }while((giorno<1)||(giorno>28));
+if((mese==4)||(mese==6)||(mese==9)||(mese==11))
+           do{
+               var giorno=parseInt(prompt("inserire il numero del giorno",""));
+            }while((giorno<1)||(giorno>30));
+if((mese==1)||(mese==3)||(mese==5)||(mese==7)||(mese==8)||(mese==10)||(mese==12))
+           do{
+               var giorno=parseInt(prompt("inserire il numero del giorno",""));
+            }while((giorno<1)||(giorno>31));
+for(i=1;i<mese;i++){
+if(i==2)
+           diffG=diffG+28;
+if((i==4)||(i==6)||(i==9)||(i==11))
+                    diffG=diffG+30;
+if((i==1)||(i==3)||(i==5)||(i==7)||(i==8)||(i==10)||(i==12))
+           diffG=diffG+31;
+}
+diffG=diffG+giorno-giornoRif;
+window.close();
+mywin=window.open();
+mywin.document.write("sono passati "+diffG+" giorni");
+
+
+}
+</script>
+</HEAD>
+
+<BODY>
+
+
+<input type="button" name="puls1" id="puls1" value="CLICCA PER INIZIARE" onClick="conta();"><BR><BR>
+
+</BODY>
+</HTML>

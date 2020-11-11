@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE> CALCOLATRICE</TITLE>
+<script type="text/javascript">
+function calcola(N1,N2,operazione)
+{
+  N1=parseFloat(N1);
+  N2=parseFloat(N2);
+  var risposta;   
+  if(operazione=='+')
+             risposta=N1+N2;  
+ if(operazione=='-')
+             risposta=N1-N2;  
+ if(operazione=='*')
+             risposta=N1*N2;  
+ if(operazione=='/')
+  {
+     if(N2!=0)
+             risposta=N1/N2;  
+     else
+
+       alert("IMPOSSIBILE");
+  }
+
+
+  risultato.value='='+risposta;
+}
+
+function reset()
+{
+InputA.value="";
+InputB.value="";
+risultato.value="";
+}
+</script>
+</HEAD>
+
+<BODY>
+
+<input type="text" name="InputA" id="InputA" value="" size=4><BR><BR>
+<input type="text" name="InputB" id="InputB" value="" size=4><BR><BR>
+<input type="button" name="puls1" id="puls1" value="+" onClick="calcola(InputA.value,InputB.value,puls1.value);">
+<input type="button" name="puls2" id="puls2" value="-" onClick="calcola(InputA.value,InputB.value,puls2.value);">
+<input type="button" name="puls3" id="puls3" value="*" onClick="calcola(InputA.value,InputB.value,puls3.value);">
+<input type="button" name="puls4" id="puls4" value="/" onClick="calcola(InputA.value,InputB.value,'/');">
+<input type="reset" onClick="reset();">
+
+<BR><BR>
+<input type="text" name="risultato" id="risultato" size=8> 
+  
+</BODY>
+</HTML>

@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE> ESERCIZIO 2 </TITLE>
+<script type="text/javascript">
+function pari_disp(num)
+{
+  var val;
+  val=parseInt(num);
+  if(val%2)        //la condizione è vera se il resto è diverso da 0
+    alert('INSERITO ' + val + ' OVVERO UN NUMERO DISPARI');
+  else 
+    alert('INSERITO ' + val + ' OVVERO UN NUMERO PARI');
+}
+</script>
+</HEAD>
+
+<BODY>
+Numero: 
+<input type="text" name="InputA" id="InputA" value="" size=5><BR><BR>
+<input type="button" name="pulsante" value="PARI O DISPARI ?" onClick="pari_disp(InputA.value);"><BR><BR>
+</BODY>
+</HTML>

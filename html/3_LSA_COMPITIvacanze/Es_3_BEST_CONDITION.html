@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE> ESERCIZIO 3 </TITLE>
+<script type="text/javascript">
+function primo(num)
+{
+  var val;
+  val=parseInt(num);
+  if((val>0)&&(val<100))
+  {
+    if(((val%2)&&(val%3)&&(val%5)&&(val%7)&&(val%11))||((val==2)||(val==3)||(val==5)||(val==7)||(val==11))) 
+      alert('INSERITO ' + val + ' OVVERO UN NUMERO PRIMO');
+    else
+      alert('INSERITO ' + val + ' OVVERO NON UN NUMERO PRIMO');
+  }
+  else
+    alert('VALORE INSERITO NON VALIDO');
+}
+</script>
+</HEAD>
+
+<BODY>
+Numero: 
+<input type="text" name="InputA" id="InputA" value="" size=5><BR><BR>
+<input type="button" name="pulsante" value="NUMERO PRIMO ?" onClick="primo(InputA.value);"><BR><BR>
+</BODY>
+</HTML>

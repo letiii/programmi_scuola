@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE> ESERCIZIO 4_B </TITLE>
+<script type="text/javascript">
+function potenza(b,e)
+{
+  var base,esp,pot;   //variabili locali alla funzione
+
+  base=parseInt(b);
+  esp=parseInt(e);
+  if(base>0)
+  {
+    var si=0;  //variabile locale all'istruzione  if(base>0)  
+    if(esp<0)
+    {
+      si=1;
+      esp*=-1;
+    }
+    for(esp,pot=1;esp>0;esp--)
+      pot*=base;
+    if(!si)     //la condizione è vera se il valore della variabile si è zero
+       risultato.value=pot;
+    else
+       risultato.value= '1/' + pot;
+  }
+  else
+    alert("BASE NEGATIVA NON CONSENTITA");
+   
+}
+</script>
+</HEAD>
+
+<BODY>
+Inserire base >0 : 
+<input type="text" name="InputA" id="InputA" value="" size=5><BR><BR>
+Inserire esponente :
+<input type="text" name="InputB" id="InputB" value="" size=5><BR><BR>
+
+<input type="button" name="pulsante" value=" Calcola Potenza " onClick="potenza(InputA.value,InputB.value);"><BR><BR>
+potenza = <input type="text" name="risultato" id="risultato" value="" size=5><BR><BR>
+
+  
+</BODY>
+</HTML>

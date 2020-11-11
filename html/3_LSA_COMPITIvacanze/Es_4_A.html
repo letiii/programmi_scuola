@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE> ESERCIZIO 4_A </TITLE>
+<script type="text/javascript">
+function mcd(num1,num2)
+{
+  var a,b,resto;   //variabili locali alla funzione
+
+  a=parseInt(num1);
+  b=parseInt(num2);
+  if((a>0)&&(b>0))
+  {
+    resto=1;
+    while(resto)   //la condizione è vera se la variabileresto contiene un valore diverso da 0
+    {
+      resto=a%b;
+      a=b;
+      b=resto;
+    }
+    risultato.value=a;
+  }
+  else
+    alert("VALORE NON CONSENTITO");
+}
+</script>
+</HEAD>
+
+<BODY>
+
+DIVIDENDO: 
+<input type="text" name="InputA" id="InputA" value="" size=5><BR><BR>
+DIVISORE:
+<input type="text" name="InputB" id="InputB" value="" size=5><BR><BR>
+<input type="button" name="pulsante" value=" Calcola Massimo Comun Divisore " onClick="mcd(InputA.value,InputB.value);"><BR><BR>
+MCD = <input type="text" name="risultato" id="risultato" value="" size=5><BR><BR>
+
+</BODY>
+</HTML>

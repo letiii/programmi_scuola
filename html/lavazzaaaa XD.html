@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE> Personaggi famosi </TITLE>
+<script type="text/javascript">
+ var d=3,i;
+ var nomi=new Array("Dante Alighieri","Catone Uticense","Leonardo da Vinci");
+ var datan=new Array(1265,95,1452);
+ var datam=new Array(1321,46,1519);
+function controlla(N)
+{
+var d1=parseInt(prompt("inserire la data di nascita",""));
+var d2=parseInt(prompt("inserire la data di morte",""));
+var c;
+for(i=0;i<d;i++)
+                 if(nomi[i]==N)
+                                c=i;
+if((d1==datan[c])&&(d2==datam[c]))
+                             alert("COMPLIMENTI!");
+else
+     alert("Sbagliato! Le date giuste sono: data di nascita "+datan[c]+" e quella di morte "+datam[c]);
+}
+</script>
+</HEAD>
+
+<BODY BGCOLOR="#FFAAGG" TEXT="#00FFFF">
+<H1><P>Cliccare sul nome del personaggio per provare a indovinare le date in cui è nato e morto</P> <BR><BR>
+<input type="button" name="puls1" id="puls1" value="Dante Alighieri" onClick="controlla(puls1.value);"><BR><BR>
+<input type="button" name="puls2" id="puls2" value="Catone Uticense" onClick="controlla(puls2.value);"><BR><BR>
+<input type="button" name="puls3" id="puls3" value="Leonardo da Vinci" onClick="controlla(puls3.value);"><BR><BR>
+<P STYLE = "COLOR: RGB(0,0,255);FONT-SIZE : 20pt">La leggenda racconta che Dante e Catone bevevano Lavazza nel paradiso XD </P>
+<CENTER>
+<IMG src="lavazza.jpg">
+</CENTER>
+</BODY>
+</HTML>

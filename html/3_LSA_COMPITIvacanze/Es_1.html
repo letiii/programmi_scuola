@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE> ESERCIZIO 1 </TITLE>
+<script type="text/javascript">
+function quadrato(num)
+{
+  var lato,p2,a;   //queste variabili sono locali alla funzione
+
+  lato=parseFloat(num);
+  if(lato<=0)
+    alert("SE IL LATO E' <=0 IL QUADRATO NON ESISTE !!!");
+  else 
+  {
+    p2=lato*4;
+    a=lato*lato;
+    perim.value = p2;
+    area.value=a;
+  } 
+}
+</script>
+</HEAD>
+
+<BODY>
+Lato Quadrato: 
+<input type="text" name="InputA" id="InputA" value="" size=2><BR><BR>
+
+<input type="button" name="pulsante" value="CALCOLA" onClick="quadrato(InputA.value);"><BR><BR>
+
+PERIMETRO = <input type="text" name="perim" id="perim" value="" size=15><BR><BR>
+AREA = <input type="text" name="area" id="area" value="" size=15><BR>
+  
+</BODY>
+</HTML>

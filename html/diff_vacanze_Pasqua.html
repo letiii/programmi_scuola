@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>GIORNI FINO ALLE VACANZE DI PASQUA</title>
+<script type="text/javascript">
+var gm=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+var giorno=new Array("domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato");
+var mese=new Array("gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre");
+         var oggi=new Date();		
+         var gg=oggi.getDate();  	
+         var mm=oggi.getMonth();	
+         var yy=oggi.getFullYear();	
+         var week=oggi.getDay();	
+         document.write("<br><br>Buon giorno! Oggi è "+ giorno[week] + ' ' + gg+ ' ' + mese[mm] + ' ' +yy);
+
+ function calcola(g,m)  
+{
+  var tot=g,i;
+  
+  for(i=0;i<m-1;i++)
+    tot+=gm[i]; 
+  return(tot);
+}
+
+function elabora()
+{
+  var mese=4,giorno=13;
+  var t1,t2;
+  t2=calcola(gg,mm+1);
+  t1=calcola(giorno,mese);
+  t1=t1-t2;
+  if(t1<0)
+    document.write("Quelle vacanze di Pasqua appartengono al passato, ormai");
+else
+    document.write("Mancano "+t1+" giorni alle vacanze di Pasqua");
+}
+    
+
+</script>
+
+</head>
+<body>
+<br><br>
+Premere avvio per calcolare quanti giorni mancano alle vacanze di Pasqua(13/04/2017)
+<br><br>
+<input type="button" name="avvio" value=" AVVIO " onclick="elabora();">
+
+
+</body>
+</html>
+
+
+
+
+
+

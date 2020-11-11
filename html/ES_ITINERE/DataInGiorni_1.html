@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE> CONVERTE SINGOLA DATA </TITLE>
+<script type="text/javascript">
+
+var gm=new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+
+function inser(l1,l2,cosa)
+{
+  var val;
+
+  do{
+      val=parseInt(prompt("INSERIRE "+ cosa , ""));
+      if((val<l1)||(val>l2))
+         alert("ERRORE: STAI INSERENDO IL " + cosa + "\n\nREINSERIRE VALORE >= " + l1 + " E <= " + l2);
+  }while((val<l1)||(val>l2));
+  return(val);
+}
+
+function calcola(g,m)  
+{
+  var tot=g,i;
+  
+  for(i=0;i<m-1;i++)
+    tot+=gm[i]; 
+  return(tot);
+}
+
+function elabora()
+{
+  var mese1,giorno1;
+  
+  mese1=inser(1,12,"MESE");
+  giorno1=inser(1,gm[mese1-1],"GIORNO");
+  
+  var t1;
+  t1=calcola(giorno1,mese1);
+  
+  window.close();
+  mywin=window.open();
+  mywin.document.write("<P style='color: rgb(0,0,255);font-size: 24pt;font-weight: bold'> DATA: " + giorno1 + "/" + mese1 + "<br><br>");
+  mywin.document.write("GIORNI PASSATI DAL 1° GENNAIO: " + t1);
+}
+  
+</script>
+</HEAD>
+
+<BODY><B>
+<P style="color: rgb(255,0,0);font-size: 24pt">
+ TU INSERISCI UNA DATA NEL FORMATO NUMERO-MESE NUMERO-GIORNO IO TI DICO QUANTI GIORNI SONO PASSATI DAL PRIMO DI GENNAIO <BR><BR>
+ Premere AVVIO per iniziare L'ELABORAZIONE &nbsp;&nbsp;&nbsp;
+<input type="button" name="avvio" style="color: rgb(255,255,255);background-color: rgb(255,0,0);font-weight: bold;font-size: 22pt" value=" AVVIO " onclick="elabora();">
+</BODY>
+</HTML>

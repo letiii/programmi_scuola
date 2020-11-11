@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<TITLE> VOTAZIONI </TITLE>
+<script type="text/javascript">
+ var cont=0,d=4,i;
+ var voti=new Array(d);
+ var candidati=new Array("candidato A","candidato B","candidato C","schede nulle");
+for(i=0;i<d;i++)
+                  voti[i]=0;
+function conta(N)
+{
+  N=parseInt(N);
+if((N==1)||(N==2)||(N==3))
+         voti[N-1]++;
+
+else
+        voti[d-1]++;
+
+reset();
+}
+
+function risultato(){
+var vincitore="ballottaggio tra ";
+var v=-1;
+for(i=0;i<d-1;i++)
+                           if(voti[i]>v)
+                                             v=voti[i];
+for(i=0;i<d-1;i++)
+                          if(voti[i]==v)
+                                            cont++;
+if(cont==1){
+                 for(i=0;i<d-1;i++)
+                                            if(voti[i]==v)
+                                                             vincitore="il vincitore e' "+candidati[i];
+}
+else{
+                  if(cont==d-1){
+                                            vincitore="ballottaggio tra tutti i candidati";
+                                        }
+                  else{
+                                            for(i=0;i<d-1;i++)
+                                                                      if(voti[i]==v)
+                                                                                        vincitore=vincitore+" "+candidati[i];
+                            }
+}
+document.write(vincitore);
+document.write("<BR>");
+for(i=0;i<d;i++){
+                         document.write(candidati[i]+" sono "+voti[i]+" voti");
+                         document.write("<BR>");
+                        
+}
+
+                                            
+}
+
+function reset()
+{
+InputA.value=" ";
+}
+</script>
+</HEAD>
+
+<BODY>
+1 per candidato A<BR>
+2 per candidato B<BR>
+3 per candidato C<BR>
+<input type="text" name="InputA" id="InputA" value="" size=4><BR><BR>
+<input type="button" name="puls1" id="puls1" value="CONFERMA" onClick="conta(InputA.value);"><BR><BR>
+<input type="button" name="puls2" id="puls2" value="Chi ha vinto?" onClick="risultato();">
+</BODY>
+</HTML>

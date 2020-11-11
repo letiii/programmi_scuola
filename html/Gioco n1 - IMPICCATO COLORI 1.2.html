@@ -1,0 +1,312 @@
+<HTML>
+	<HEAD>
+		<TITLE>
+			Gioco n1 - IMPICCATO
+		</TITLE>
+		<SCRIPT TYPE="text/javascript">
+			var Nome_Sfidante = prompt("INSERIRE NOME SFIDANTE"," ").toUpperCase();
+			var versione_Gioco;
+			var parola_Da_Trovare;
+			var num_Lettere;
+			do
+			{
+				versione_Gioco = prompt("INSERIRE MODALITA' GIOCO : 'CLASSICO' O 'ALTERNATIVO'","classico");
+				versione_Gioco = versione_Gioco.toUpperCase();
+				if((versione_Gioco != "CLASSICO")&&(versione_Gioco != "ALTERNATIVO"))
+					alert("ATTENZIONE POTETE INSERIRE SOLO 'CLASSICO' O 'ALTERNATIVO'\n\n(non fa differenza tra maiuscolo e minuscolo)");
+			}while((versione_Gioco != "CLASSICO")&&(versione_Gioco != "ALTERNATIVO"));
+			do													//INSERIMENTO PAROLA
+			{
+				parola_Da_Trovare = prompt("INSERIRE LA PAROLA DA TROVARE CON UN MINIMO DI 3 CARATTERI E UN MASSIMO DI 15","");
+				parola_Da_Trovare = parola_Da_Trovare.toUpperCase();
+				num_Lettere = parola_Da_Trovare.length;
+				if((num_Lettere>15)||(num_Lettere<3))
+					alert("ATTENZIONE "+ Nome_Sfidante +"!!\n\nNUMERO CARATTERI INSERITI NON VALIDI");
+			}while((num_Lettere>15)||(num_Lettere<3));
+			var Tentativi = 0;
+			var cont;
+			var Stanga = new Array ("Stanga.png","Stanga 2.png","Stanga 3.png","Stanga 4.png","morto.png");
+			var cont_Stanga = 0;
+			if(versione_Gioco == "CLASSICO")
+			{
+				Tentativi = 5;
+				document.write("<IMG SRC='Bianco.png' NAME='immagine' ID='immagine' STYLE='position:absolute;top:20%;right:5%;width:30%;high:30%'/>");
+			}
+			else
+			{
+				var num_Tentativi = num_Lettere;
+				while(num_Tentativi>0)								//ALGORITMO PER NUMERO TENTATIVI
+				{
+				num_Tentativi -= 2;
+				Tentativi++;
+				}
+				Tentativi++;
+			}
+			var Usate = new Array (num_Lettere + Tentativi);
+			var cont_1 = 0;
+			var parola_Nascosta = new Array (num_Lettere);
+			var Nome_Caselle = new Array (num_Lettere);
+			document.write("<CENTER><H1>TI DO IL BENVENUTO NEL GIOCO DELL'IMPICCATO "+ Nome_Sfidante +"</H1></CENTER>");
+			document.write("<CENTER><TABLE><TR>");				//CREAZIONE TABELLA
+			for(cont = 0;cont < num_Lettere;cont++)
+				Input(cont);
+			document.write("</TR></TABLE></CENTER>");			//FINE TABELLA
+			if(versione_Gioco == "CLASSICO")
+			{
+				Scambio(0,parola_Da_Trovare[0]);
+				Scambio(num_Lettere-1,parola_Da_Trovare[num_Lettere-1]);
+			}
+			
+			function Tentativo(Prova)
+			{
+				Prova = Prova.toUpperCase();
+				var Inizio = Lettere_Usate(Prova);
+				if(Inizio)
+				{
+					alert(Nome_Sfidante +" LETTERA/PAROLA GIA' UTILIZZATA.\n\nREINSERISCI");
+					PULISCI();
+				}
+				else
+				{
+					if(Prova.length == 1)
+					{
+						var Conferma_1 = true;
+						if(Tentativi == 1)						//CASO IN CUI RIMANGA UN SOLO TENTATIVO
+						{	
+							Conferma_1 = confirm("ATTENZIONE "+ Nome_Sfidante +", TI RIMANE 1 SOLO TENTATIVO SICURI DI VOLER INSERIRE \""+ Prova +"\"");
+						}
+						if(Conferma_1 == true)
+						{
+							var Stato = 0;
+							for(cont=0;cont<num_Lettere;cont++)
+							{
+								if(Prova == parola_Da_Trovare[cont])
+								{
+									Scambio(cont,Prova);
+									Stato++;
+								}
+							}
+							PULISCI();
+							Lettera.select();
+							if(!Stato)
+								Scrivi_Tentativi(1);
+							else
+							{
+								var Giusto = 0;
+								for(cont=0;cont<num_Lettere;cont++)
+								{
+									if(parola_Da_Trovare[cont] == parola_Nascosta[cont])
+										Giusto++;
+								}
+								if(Giusto == num_Lettere)
+									Esatto();
+							}
+							Gia_Usate(Prova);
+						}
+						else
+						{
+							alert("VA BENE "+ Nome_Sfidante +"\nREINSERISCI");
+							PULISCI();
+						}
+					}
+					else
+					{
+						if(Prova.length != num_Lettere)
+						{
+							alert("ATTENZIONE "+ Nome_Sfidante +"!!\n\nNON HAI INSERIMENTO LO STESSO NUMERO DI CARATTERI\n\nPURTROPPO PERDI 1 TENTATIVO, "+ Nome_Sfidante +" DEVI FARE PIU' ATTENZIONE");
+							PULISCI();
+							Scrivi_Tentativi(1);
+							Gia_Usate(Prova);
+						}
+						else
+						{
+							var Conferma = confirm(Nome_Sfidante +" SEI SICURO/A DI VOLER TENTARE DI INDOVINARE LA PAROLA?");
+							if(Conferma == true)
+							{
+								var Tentativo = 0;
+								for(cont=0;((cont<num_Lettere)&&(Tentativo!=-1));cont++)
+								{
+									if(Prova[cont] == parola_Da_Trovare[cont])
+										Tentativo++;
+									else
+										Tentativo = -1;
+								}
+								PULISCI();
+								Lettera.select();
+								if(Tentativo == -1)
+									Scrivi_Tentativi(2);
+								else
+								{
+									for(cont=0;cont<num_Lettere;cont++)
+										Scambio(cont,Prova[cont]);
+									Esatto();
+								}
+								Gia_Usate(Prova);
+							}
+							else
+							{
+								alert("VA BENE "+ Nome_Sfidante +"\nREINSERITE");
+								PULISCI();
+							}
+						}
+					}
+				}
+			}
+			
+			function Input(x)									//CREAZIONE CASELLE DI TESTO
+			{
+				switch (x)
+				{
+					case 0:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_A' ID='Input_A' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_A;
+					break;
+					case 1:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_B' ID='Input_B' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_B;
+					break;
+					case 2:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_C' ID='Input_C' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_C;
+					break;
+					case 3:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_D' ID='Input_D' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_D;
+					break;
+					case 4:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_E' ID='Input_E' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_E;
+					break;
+					case 5:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_F' ID='Input_F' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_F;
+					break;
+					case 6:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_G' ID='Input_G' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_G;
+					break;
+					case 7:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_H' ID='Input_H' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_H;
+					break;
+					case 8:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_I' ID='Input_I' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_I;
+					break;
+					case 9:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_J' ID='Input_J' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_J;
+					break;
+					case 10:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_K' ID='Input_K' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_K;
+					break;
+					case 11:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_L' ID='Input_L' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_L;
+					break;
+					case 12:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_M' ID='Input_M' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_M;
+					break;
+					case 13:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_N' ID='Input_N' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_N;
+					break;
+					case 14:
+						document.write("<TD><INPUT TYPE='text' NAME='Input_O' ID='Input_O' VALUE='*' SIZE=1 READONLY='readonly' STYLE='background:#FF9999;font-size:16pt;text-align:center;border:0'/></TD>");
+						Nome_Caselle[x] = Input_O;
+					break;
+				}
+			}
+			
+			function Scambio(y,z)								//SCAMBIO '*' CON LETTERE
+			{
+				Nome_Caselle[y].value = z;
+				Nome_Caselle[y].style.color = "green";
+				Nome_Caselle[y].style.background = "#99FF99";
+				parola_Nascosta[y] = z;
+			}
+			
+			function PULISCI()									//PULISCI CASELLA DI TESTO
+			{
+				Lettera.value = "";
+			}
+			
+			function Sbagliato(X)								//CASO CHE FINISCE TENTATIVI
+			{
+				if(X<=0)
+				{
+					alert(Nome_Sfidante +" HAI PERSO!! HAI FINITO I TUOI TENTATIVI");
+					window.close();
+					var parola_Sbagliata = window.open();
+					parola_Sbagliata.document.write("<BODY BGCOLOR='#FF0000'><CENTER><H1>"+ Nome_Sfidante +" HAI TERMINATO I TUOI TENTATIVI<BR><BR>LA PAROLA ESATTA ERA: "+ parola_Da_Trovare +"</H1></CENTER></BODY>");
+					parola_Sbagliata.document.write("<BR><BR><CENTER><IMG SRC='e040.gif'/><BR><H1>HAI PERSO</H1></CENTER>");
+				}
+			}
+			
+			function Esatto()									//CASO CHE INDOVINI LA PAROLA
+			{
+				alert("COMPLIMENTI "+ Nome_Sfidante +"!!! HAI VINTO");
+				window.close();
+				var parola_Esatta = window.open();
+				parola_Esatta.document.write("<BODY BGCOLOR='#00FF00'><CENTER><H1>COMPLIMENTI "+ Nome_Sfidante +" HAI VINTO</H1></CENTER></BODY>");
+			}
+			
+			function Gia_Usate(Y)								//SALVA TENTATIVI GIA' USATI
+			{
+				Usate[cont_1] = Y;
+				for(cont=0;cont<cont_1;cont++)
+				{
+					Y = Y +" - "+ Usate[cont];
+				}
+				cont_1++;
+				Usati.value = Y;
+			}
+			
+			function Scrivi_Tentativi(Z)						//SCRIVI TENTATIVI SU CASELLA DI TESTO
+			{
+				alert(Nome_Sfidante +" HAI SBAGLIATO");
+				if(versione_Gioco == "CLASSICO")
+				{
+					immagine.src = Stanga[cont_Stanga];
+					cont_Stanga++;
+				}
+				Tentativi -= Z;
+				if(Tentativi == 1)
+				{
+					num_Tent.style.background = "#FF9999";
+					num_Tent.style.color = "FF0000";
+				}
+				num_Tent.value = Tentativi;
+				Sbagliato(Tentativi);
+			}
+			
+			function Lettere_Usate(W)
+			{
+				var Gioco = 0;
+				for(cont=0;((cont<cont_1)&&(!Gioco));cont++)
+				{
+					if(W == Usate[cont])
+						Gioco++;
+				}
+				return Gioco;
+			}
+		</SCRIPT>
+	</HEAD>
+	<BODY>
+		<BR><BR>
+		NUMERO TENTATIVI = <INPUT TYPE="text" NAME="num_Tent" ID="num_Tent" SIZE=1 READONLY="readonly"/>
+		<BR>
+		LETTERA/PAROLA = <INPUT TYPE="text" NAME="Lettera" ID="Lettera" SIZE=5 STYLE="background:#9999FF"/>
+		<SCRIPT LANGUAGE="JavaScript">
+			num_Tent.value = Tentativi;
+			Lettera.select();
+		</SCRIPT>
+		<INPUT TYPE="button" NAME="bo" VALUE="INVIA" ONCLICK="Tentativo(Lettera.value);"/>
+		<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		LETTERE/PAROLA GIA' USATE = <INPUT TYPE="text" NAME="Usati" ID="Usati" SIZE=40/>
+		<A HREF="Regole - IMPICCATO.html"><INPUT TYPE="button" NAME="guida" VALUE="?" STYLE="position:absolute;top:2%;left:1%"/></A>
+		<P STYLE="font-size:5pt;position:absolute;right:1%;bottom:0%">made BY S117</P>
+	</BODY>
+</HTML>

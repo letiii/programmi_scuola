@@ -1,0 +1,70 @@
+<html><head><title>quiz</title>
+<script type="text/javascript">
+
+function controlla()
+{
+ var  cont=0,totaleMin=3,ris;
+if((v1.checked!=f1.checked)&&(f1.checked==true))
+                        cont++;
+
+if((v2.checked!=f2.checked)&&(f2.checked==true))
+                        cont++;
+if((v3.checked!=f3.checked)&&(v3.checked==true))
+                        cont++;
+if((v4.checked!=f4.checked)&&(f4.checked==true))
+                        cont++;
+
+
+
+if(cont>=totaleMin)
+              ris="idoneo";
+else
+              ris="respinto";
+
+window.close();
+mywin=window.open();
+mywin.document.write(ris);
+
+
+}
+</script>
+</head>
+
+
+
+<body bgcolor="#FF99FF">
+<CENTER><P style="color: rgb(0,0,255);font-size: 22pt;font-weight: bold">Quando si è sicuri di aver risposto a tutte le domande, premere OK
+</P></CENTER>
+
+<P>1)</P>
+<IMG src="strada-deformata.png">
+<P> Il segnale raffigurato indica una serie di dossi</P>
+<input type="checkbox" name="v1" id="v1" value=false> VERO&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="f1" id="f1" value=false> FALSO<BR><BR>
+
+
+<P>2)</P>
+<P> Nella prossimità e corrispondenza di curve è vietata la sosta, ma consentita la fermata</P>
+<input type="checkbox" name="v2" id="v2" value=false> VERO&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="f2" id="f2" value=false> FALSO<BR><BR>
+
+
+<P>3)</P>
+<P> E' vietato il sorpasso nel tratto in salita di un dosso</P>
+<input type="checkbox" name="v3" id="v3" value=false> VERO&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="f3" id="f3" value=false> FALSO<BR><BR>
+
+<P>4)</P>
+<P> Si può riparare un danno alla visiera del casco con del nastro adesivo, purchè di tipo ultratrasparente</P>
+<input type="checkbox" name="v4" id="v4" value=false> VERO&nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="f4" id="f4" value=false> FALSO<BR><BR>
+
+
+
+
+
+<CENTER><input type="button" name=avvio" id="avvio" style="color: rgb(255,255,255);background-color: rgb(0,0,255);font-size: 22pt;font-weight: bold" value="OK" onclick="controlla();">
+</CENTER>
+
+</body>
+</html>

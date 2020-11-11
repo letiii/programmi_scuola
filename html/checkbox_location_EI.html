@@ -1,0 +1,29 @@
+<html><head><title>ese potenziamento</title>
+<script type="text/javascript">
+function pulisci()
+{
+   caldo.checked=false;
+   freddo.checked=false;
+}
+
+function scelta()
+{
+   if((caldo.checked==true)&&(freddo.checked==false))
+       window.location="http://previews.123rf.com/images/iakov/iakov1011/iakov101100030/8240957-Mare-dei-Caraibi-e-palme-da-cocco-Archivio-Fotografico.jpg"    
+   else if ((freddo.checked==true)&&(caldo.checked==false))
+        window.location="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSfon5K1XnRC113neLhCMI4FtaeVPX8bROztqPmSIzCUsoYWzu-bQ"    
+   else 
+      alert("Non so cosa dirti");
+   pulisci();
+}
+</script>
+</head>
+<body>
+<CENTER><P style="color: rgb(0,0,255);font-size: 22pt;font-weight: bold">Scegliere se si preferisce il caldo o il freddo, quindi premere ok
+</P></CENTER>
+<input type="checkbox" name="caldo" id="caldo" value=false> CALDO<BR>
+<input type="checkbox" name="freddo" id="freddo" value=false> FREDDO<BR><BR>
+<CENTER><input type="button" name=avvio" id="avvio" style="color: rgb(255,255,255);background-color: rgb(0,0,255);font-size: 22pt;font-weight: bold" value="OK" onclick="scelta();">
+</CENTER>
+</body>
+</html>

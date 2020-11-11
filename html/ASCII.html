@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE> ASCII </TITLE>
+<script type="text/javascript">
+function controlla(ca){
+
+if (((ca>='A')&&(ca<='Z'))||((ca>='a')&&(ca<='z')))
+{
+  if((ca=='A')||(ca=='a')||(ca=='E')||(ca=='e')||(ca=='I')||(ca=='i')||(ca=='O')||(ca=='o')||(ca=='U')||(ca=='u'))
+     alert(ca+" è una vocale");
+  else
+     alert(ca+" è una consonante");
+}
+else
+  alert(ca+" non è una lettera");
+reset();
+}
+function reset(){
+inputA.value="";
+}
+</script>
+</HEAD>
+
+<BODY >
+<input type="text" name="inputA" id="inputA" value="" size=4>
+<input type="button" name ="puls" id="puls" value="controlla" onClick="controlla(inputA.value);">
+</BODY>
+</HTML>
